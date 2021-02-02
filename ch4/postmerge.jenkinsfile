@@ -23,7 +23,7 @@ pipeline {
             }
         }
         stage('Get Docker group') {
-            agent { label 'firewalled-agent' }
+            agent { label 'firewalled-firewalled-agent' }
             steps {
                 script {
                     docker_group = sh (
@@ -36,8 +36,8 @@ pipeline {
         stage('Package, Test, & Deliver') {
             agent {
                 dockerfile {
-                    label 'firewalled-agent'
-                    filename 'package.dockerfile'
+                    label 'firewalled-firewalled-agent'
+                    filename 'cd-env.dockerfile'
                     args "-v /var/run/docker.sock:/var/run/docker.sock:rw --group-add ${docker_group}"
                 }
             }
@@ -63,7 +63,7 @@ pipeline {
                         container = docker.build("git", "-f git.dockerfile .")
                         container.inside {
                             withCredentials([sshUserPrivateKey(
-                                credentialsId: 'github-privkey-calvinpark', keyFileVariable: 'KEYFILE')]) {
+                                credentialsId: 'github-calvinpark-priv', keyFileVariable: 'KEYFILE')]) {
                                 withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no -i ${KEYFILE}']) {
                                     sh "git tag ${version}"
                                     sh "git push origin ${version}"
