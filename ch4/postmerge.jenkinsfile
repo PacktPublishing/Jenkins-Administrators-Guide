@@ -1,5 +1,8 @@
 pipeline {
     agent none
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '1000'))
+    }
     environment {
         DOCKER = credentials('dockerhub-calvinpark-userpass')
     }
@@ -75,6 +78,13 @@ pipeline {
                         throw e
                     }
                 }
+            }
+        }
+    }
+    post {
+        success {
+            script {
+                currentBuild.description = version
             }
         }
     }
