@@ -1,0 +1,3 @@
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --tlsverify --tlscacert=/etc/ssl/docker-host/ca.crt --tlscert=/etc/ssl/docker-host/server.crt --tlskey=/etc/ssl/docker-host/server.key
