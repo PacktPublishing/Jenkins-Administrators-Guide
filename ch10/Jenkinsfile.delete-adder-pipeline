@@ -1,0 +1,17 @@
+@Library('shared-lib') _
+
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'pipelineName', description: 'Pipeline name to delete')
+    }
+
+    stages {
+        stage('Delete pipeline') {
+            steps {
+                deleteAdderPipeline(params.pipelineName)
+            }
+        }
+    }
+}
