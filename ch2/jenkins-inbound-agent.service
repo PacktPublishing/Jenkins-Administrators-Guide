@@ -4,7 +4,7 @@ Wants=network.target
 After=network.target
 
 [Service]
-ExecStart=java -jar /home/robot_acct/inbound-agent/agent.jar -jnlpUrl https://jenkins-aws.lvin.ca/computer/inbound-agent/slave-agent.jnlp -secret /home/robot_acct/inbound-agent/secret-file -workDir /home/robot_acct/inbound-agent
+ExecStart=java -jar /home/robot_acct/inbound-agent/agent.jar -jnlpUrl https://jenkins-aws.lvin.ca/computer/inbound-agent/slave-agent.jnlp -secret @/home/robot_acct/inbound-agent/secret-file -workDir /home/robot_acct/inbound-agent
 
 User=robot_acct
 Restart=on-failure
