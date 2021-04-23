@@ -5,10 +5,14 @@ jenkins:
       - "Credentials/View:authenticated"
       - "Overall/Administer:admin"
       - "Overall/Read:authenticated"
+      - "Job/Discover:anonymous"
       - "View/Read:authenticated"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: true
+  markupFormatter:
+    rawHtml:
+      disableSyntaxHighlighting: false
   numExecutors: 0
 
 unclassified:

@@ -108,6 +108,7 @@ jenkins:
     projectMatrix:
       permissions:
       - "Credentials/View:authenticated"
+      - "Job/Discover:anonymous"
       - "Overall/Administer:admin"
       - "Overall/Read:authenticated"
       - "View/Read:authenticated"
@@ -132,6 +133,9 @@ jenkins:
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: true
+  markupFormatter:
+    rawHtml:
+      disableSyntaxHighlighting: false
   nodes:
   - permanent:
       labelString: "docker"
