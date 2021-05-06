@@ -9,7 +9,7 @@ You will be able to find all the links for chapter 5 here.
 
 ## Logging into AWS
 
-1. AWS console - https://console.aws.amazon.com/console/home?region=us-east-1 
+1. AWS console - https://console.aws.amazon.com/console/home 
 
 ## Let's Encrypt
 
