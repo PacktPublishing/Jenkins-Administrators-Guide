@@ -1,0 +1,28 @@
+library(identifier: 'dynamic-lib@main',
+        retriever: modernSCM([
+            $class: 'GitSCMSource', credentialsId: '', 
+            remote: 'https://github.com/<GitHub Username>/jenkins-shared-library.git'
+        ]))
+//import ca.lvin.books.jenkins.RandomWord  // FAILS!
+
+pipeline {
+    agent any
+    
+    stages {
+        stage('src test 1') {
+            steps {
+                script {
+                    RandomWord rw = new RandomWord(this)
+                    echo rw.get()
+                }
+            }
+        }
+        stage('vars test 1') {
+            steps {
+                script {
+                    randomWordFromVars.echo()
+                }
+            }
+        }
+    }
+}

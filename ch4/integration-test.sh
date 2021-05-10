@@ -7,8 +7,8 @@ EXPECTED=$3
 VERSION=${4:-latest}
 SUM=$(docker run calvinpark/adder:${VERSION} ${FIRST} ${SECOND})
 
-if [[ ${SUM} == "${EXPECTED}" ]]; then
-    echo "Integration test success"
+if [[ "${SUM}" == "${EXPECTED}" ]]; then
+    echo "Integration test passed"
 else
     echo "[ERROR] ${FIRST} + ${SECOND} returned ${SUM}, not ${EXPECTED}" >&2
     exit 1

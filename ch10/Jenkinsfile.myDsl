@@ -1,0 +1,10 @@
+@Library('my-folder-shared-lib') _
+
+String spec = '''\
+- stage_name: First stage
+  build_cmd: echo "Hello myDsl!"
+- stage_name: Second stage
+  build_cmd: echo "Hello dynamic stages!"
+'''
+
+myDsl(spec)
