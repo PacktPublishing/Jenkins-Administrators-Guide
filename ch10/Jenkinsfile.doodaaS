@@ -1,0 +1,9 @@
+@Library('my-folder-shared-lib') _
+
+Closure steps_closure = {
+    echo "Hello closure & DooD!"
+    sh "docker ps"
+    slack('#general', 'This works too!')
+}
+
+doodaaS(steps_closure)

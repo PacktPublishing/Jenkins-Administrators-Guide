@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+
+    stages {
+        stage ('List all pipelines') {
+            steps {
+                script {
+                    Jenkins.instance.getAllItems(Job.class).each {
+                        println it.fullName
+                    }
+                }
+            }
+        }
+    }
+}

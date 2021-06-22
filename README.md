@@ -1,2 +1,2 @@
-# Practical-Jenkins-2.x
-Practical Jenkins 2.x, published by Packt
+# Jenkins Administrator's Guide
+Jenkins Administrator's Guide, published by Packt

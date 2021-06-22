@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello Slack!') {
+            steps {
+                slackSend(
+                    baseUrl: "https://<your Slack workspace>.slack.com/services/hooks/jenkins-ci/",
+                    tokenCredentialId: "slack-token",
+                    channel: "#general",
+                    message: "Hello Slack!")
+            }
+        }
+    }
+}

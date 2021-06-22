@@ -1,0 +1,92 @@
+pipeline {
+    agent none
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '1000'))
+    }
+    environment {
+        DOCKER = credentials('dockerhub-calvinpark-userpass')
+    }
+    stages {
+        stage('Get next version') {
+            agent {
+                dockerfile {
+                    label 'docker'
+                    filename 'git.dockerfile'
+                }
+            }
+            steps {
+                script {
+                    version_g = sh (
+                        script: 'sh get-next-version.sh',
+                        returnStdout: true
+                    ).trim()
+                    echo "Next version is ${version_g}"
+                    sh "echo -n ${version_g} > version_f"
+                }
+            }
+        }
+        stage('Get Docker group') {
+            agent { label 'firewalled-firewalled-agent' }
+            steps {
+                script {
+                    docker_group = sh (
+                        script: "stat -c '%g' /var/run/docker.sock",
+                        returnStdout: true
+                    ).trim()
+                }
+            }
+        }
+        stage('Package, Test, & Deliver') {
+            agent {
+                dockerfile {
+                    label 'firewalled-firewalled-agent'
+                    filename 'cd-env.dockerfile'
+                    args "-v /var/run/docker.sock:/var/run/docker.sock:rw --group-add ${docker_group}"
+                }
+            }
+            steps {
+                sh """
+                    export version_s=\$(cat version_f)
+
+                    ./package.sh \${version_s}
+                    ./integration-test.sh 3 8 11 ${version_g}
+
+                    echo \${DOCKER_PSW} > docker-password
+                    export HOME=${WORKSPACE}
+                    cat docker-password | docker login --username \${DOCKER_USR} --password-stdin
+                    docker push calvinpark/adder:${version_g}
+                """
+            }
+        }
+        stage('Push git tag') {
+            agent { label 'docker' }
+            steps {
+                script {
+                    try {
+                        container = docker.build("git", "-f git.dockerfile .")
+                        container.inside {
+                            withCredentials([sshUserPrivateKey(
+                                credentialsId: 'github-calvinpark-priv', keyFileVariable: 'KEYFILE')]) {
+                                withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no -i ${KEYFILE}']) {
+                                    sh "git tag ${version_g}"
+                                    sh "git push origin ${version_g}"
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        sh "git tag -d ${version_g} || true"
+                        throw e
+                    }
+                }
+            }
+        }
+    }
+    post {
+        always {
+            script {
+                currentBuild.description = version_g
+            }
+        }
+    }
+}
+

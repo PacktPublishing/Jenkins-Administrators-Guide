@@ -1,0 +1,15 @@
+@Library('my-global-shared-lib') _
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello Slack!') {
+            steps {
+                script {
+                    slack("#general", "Hello slack()!")
+                }
+            }
+        }
+    }
+}

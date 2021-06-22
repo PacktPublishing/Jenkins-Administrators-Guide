@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build subtractor') {
+            steps {
+                build job: '../subtractor/premerge',
+                    parameters: [string(name: 'REF', value: "main")]
+            }
+        }
+    }
+}

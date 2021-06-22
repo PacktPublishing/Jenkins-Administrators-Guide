@@ -1,0 +1,18 @@
+groovy:
+- script: >
+    import jenkins.model.*;
+    import org.jenkinsci.plugins.ghprb.*;
+
+    GhprbTrigger.DescriptorImpl descriptor = Jenkins.instance.getDescriptorByType(org.jenkinsci.plugins.ghprb.GhprbTrigger.DescriptorImpl.class);
+
+    String serverAPIUrl = null;
+    String jenkinsUrl = null;
+    String credentialsId = 'github-calvinpark-pat';
+    String description = 'calvinpark';
+    String id = null;
+    String secret = null;
+
+    List<GhprbGitHubAuth> githubAuths = [new GhprbGitHubAuth(serverAPIUrl, jenkinsUrl, credentialsId, description, id, secret)];
+
+    descriptor.setGithubAuth(githubAuths);
+    descriptor.save();

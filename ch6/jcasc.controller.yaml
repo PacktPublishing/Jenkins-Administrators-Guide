@@ -1,0 +1,28 @@
+jenkins:
+  authorizationStrategy:
+    projectMatrix:
+      permissions:
+      - "Credentials/View:authenticated"
+      - "Overall/Administer:admin"
+      - "Overall/Read:authenticated"
+      - "Job/Discover:anonymous"
+      - "View/Read:authenticated"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true
+  markupFormatter:
+    rawHtml:
+      disableSyntaxHighlighting: false
+  numExecutors: 0
+
+unclassified:
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - simpleBuildDiscarder:
+        discarder:
+          logRotator:
+            numToKeepStr: "100"
+  globalDefaultFlowDurabilityLevel:
+    durabilityHint: PERFORMANCE_OPTIMIZED
+  location:
+    url: "https://jenkins-firewalled.lvin.ca/"

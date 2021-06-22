@@ -1,0 +1,36 @@
+Type: AWS::IAM::Role
+Properties:
+  RoleName: 'Example-JenkinsControllerRole'
+  AssumeRolePolicyDocument:
+    Statement:
+      - Action: 'sts:AssumeRole'
+        Principal:
+          Service: ec2.amazonaws.com
+        Effect: Allow
+        Sid: ''
+  Tags:
+    - Key: project
+      Value: jenkins
+  Policies:
+    - PolicyName: JenkinsCloudwatchLogs
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: WriteCloudWatchLogs
+            Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:DescribeLogStreams
+              - logs:FilterLogEvents
+              - logs:GetLogEvents
+              - logs:PutLogEvents
+            Resource:
+              - arn:aws:logs:*:*:log-group:JenkinsCloudwatchLogs:*
+              - arn:aws:logs:*:*:log-group:JenkinsCloudwatchLogs:log-stream:*
+            Effect: Allow
+          - Sid: ForAgentCloudwatchLogs
+            Action:
+              - sts:AssumeRole
+              - sts:GetFederationToken
+            Resource: *
+            Effect: Allow
