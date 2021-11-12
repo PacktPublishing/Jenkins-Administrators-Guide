@@ -4,7 +4,7 @@
 
 This is the code repository for [Jenkins Administrator's Guide ](https://www.packtpub.com/product/jenkins-administrator-s-guide/9781838824327?utm_source=github&utm_medium=repository&utm_campaign=9781838824327), published by Packt.
 
-**Install, manage and scale a CI/CD build and release system to accelerate your product lifecycle**
+**Install, manage and scale a CI/CD build and release system to accelerate your product life cycle**
 
 ## What is this book about?
 Jenkins is a renowned name among build and release CI/CD DevOps engineers because of its usefulness in automating builds, releases, and even operations. Despite its capabilities and popularity, it's not easy to scale Jenkins in a production environment. Jenkins Administrator's Guide will not only teach you how to set up a production-grade Jenkins instance from scratch, but also cover management and scaling strategies. 
