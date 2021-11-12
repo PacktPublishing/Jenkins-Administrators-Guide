@@ -46,12 +46,12 @@ This book is for both new Jenkins administrators and advanced users who want to 
 
 With the following software and hardware list you can run all code files present in the book (Chapter 1-11).
 ### Software and Hardware List
-| Chapter | Software required | OS required |
-| -------- | ------------------------------------ | ----------------------------------- |
-| 1-11 | Ubuntu 20.04 for the virtual machines and EC2 instances | Windows, Mac OS X, and Linux (Any) |
-| 1-11 | Docker 18 or higher, used in the Ubuntu 20.04 hosts | Ubuntu 20.04 |
-| 1-11 | Git and OpenSSL, which are preinstalled in Ubuntu 20.04 | Ubuntu 20.04 |
-| 1-11 | Jenkins 2.263.1-LTS or higher | Windows, Ubuntu 20.04 |
+| Chapter | Software required | 
+| -------- | ------------------------------------ | 
+| 1-11 | Ubuntu 20.04 for the virtual machines and EC2 instances |
+| 1-11 | Docker 18 or higher, used in the Ubuntu 20.04 hosts | 
+| 1-11 | Git and OpenSSL, which are preinstalled in Ubuntu 20.04 | 
+| 1-11 | Jenkins 2.263.1-LTS or higher | 
 
 
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://static.packt-cdn.com/downloads/9781838824327_ColorImages.pdf).
