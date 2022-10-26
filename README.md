@@ -72,3 +72,7 @@ is a software engineer with the DevOps team at NVIDIA. He has built code commit 
 
 **Samuel Gleske**
 has been a Jenkins user and contributor for 10 years since 2011. He's contributed documentation, plugins, and discovered security issues. Some notable plugins Sam has maintained include: Slack plugin, GHPRB plugin, GitHub Authentication plugin, and a half dozen others. Sam has presented on and shared scripts for the Script Console documentation including being the primary author of its wiki page. Since 2014 Sam has been developing Jervis: Jenkins as a service which enables Jenkins to scale to more than 4,000 users and 30,000 jobs in a single Jenkins controller. Jervis emphasizes full self-service within Jenkins for users while balancing security.
+### Download a free PDF
+
+ <i>If you have already purchased a print or Kindle version of this book, you can get a DRM-free PDF version at no cost.<br>Simply click on the link to claim your free PDF.</i>
+<p align="center"> <a href="https://packt.link/free-ebook/9781838824327">https://packt.link/free-ebook/9781838824327 </a> </p>
